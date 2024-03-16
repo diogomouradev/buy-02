@@ -1,0 +1,133 @@
+services:
+  # mongodb:
+  #   image: 'mongo:latest'
+  #   environment:
+  #     - 'MONGO_INITDB_DATABASE=buy01-db'
+  #     - 'MONGO_INITDB_ROOT_PASSWORD=secret'
+  #     - 'MONGO_INITDB_ROOT_USERNAME=root'
+  #   command: [--auth]
+  #   ports:
+  #     - '27017:27017'
+  #   restart: always
+  #   volumes:
+  #     - mongodb_data:/data/db
+
+  user-service:
+    build:
+      context: .
+      dockerfile: user-service/Dockerfile
+      args:
+        BUILD_PROFILE: ${BUILD_PROFILE}
+    restart: always
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb+srv://62oz:T34mP4ssw0rd@buy-01.zehvood.mongodb.net/db-user
+      SPRING_DATA_MONGODB_DB: db-user
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "8080:8080"
+    depends_on:
+      # - mongodb
+      - zookeeper
+      - kafka
+
+  product-service:
+    build:
+      context: .
+      dockerfile: product-service/Dockerfile
+    restart: always
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb+srv://62oz:T34mP4ssw0rd@buy-01.zehvood.mongodb.net/db-product
+      SPRING_DATA_MONGODB_DB: db-product
+    ports:
+      - "8081:8080"
+    depends_on:
+      # - mongodb
+      - zookeeper
+      - kafka
+
+  media-service:
+    build:
+      context: .
+      dockerfile: media-service/Dockerfile
+    restart: always
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb+srv://62oz:T34mP4ssw0rd@buy-01.zehvood.mongodb.net/db-media
+      SPRING_DATA_MONGODB_DB: db-media
+    ports:
+      - "8082:8080"
+    depends_on:
+      # - mongodb
+      - zookeeper
+      - kafka
+
+  order-service:
+    build:
+      context: .
+      dockerfile: order-service/Dockerfile
+    restart: always
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb+srv://62oz:T34mP4ssw0rd@buy-01.zehvood.mongodb.net/db-order
+      SPRING_DATA_MONGODB_DB: db-order
+    ports:
+      - "8083:8080"
+    depends_on:
+      # - mongodb
+      - zookeeper
+      - kafka
+
+  frontend:
+    build:
+      context: ./angular
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8000:80"
+      - "443:443"
+    volumes:
+      - ${CERT_PATH}:/etc/nginx/ssl:ro
+    environment:
+      - SSL_CERT_NAME=${SSL_CERT_NAME}
+      - SSL_CERT_KEY_NAME=${SSL_CERT_KEY_NAME}
+    depends_on:
+      - user-service
+      - product-service
+      - media-service
+      - order-service
+
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    restart: always
+    ports:
+      - "2181:2181"
+    volumes:
+      - "./zookeeper-data:/data"
+      - "./wait-for-it.sh:/wait-for-it.sh"
+    # depends_on:
+    #   - mongodb
+    # command: ["/bin/sh", "-c", "/wait-for-it.sh mongodb:27017 -- /usr/sbin/sshd && bash /usr/bin/start-zk.sh"]
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    restart: always
+    ports:
+      - "9092:9092"
+    expose:
+      - "9093"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_LOG_DIRS: "/kafka/kafka-logs-1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "token-validation-request:1:1,token-validation-response:1:1,user-products-deletion:1:1,user-avatar-deletion:1:1,product-media-deletion:1:1,product-ownership-requests:1:1,product-ownership-responses:1:1,user-avatar-update-requests:1:1,user-avatar-update-responses:1:1,cart-validation-request:1:1,cart-validation-response:1:1,product-order-cancellation:1:1"
+    depends_on:
+      - zookeeper
+    volumes:
+      - "./wait-for-it.sh:/wait-for-it.sh"
+      - "./kafka-entrypoint.sh:/kafka-entrypoint.sh"
+    entrypoint: ["/bin/bash", "/kafka-entrypoint.sh"]
+    # command: ["/wait-for-it.sh", "zookeeper:2181", "--", "/start-kafka.sh"]
+# volumes:
+#   mongodb_data:

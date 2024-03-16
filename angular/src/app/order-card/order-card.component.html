@@ -1,0 +1,49 @@
+<div class="order-container">
+  <div class="header">
+    <h2>{{ !isAggregatedProduct ? card.product.name : aggregatedProduct?.product?.name }}</h2>
+    <p>{{ isSeller && !isAggregatedProduct ? buyer.name : seller.name }}</p>
+    <p>{{ isSeller && !isAggregatedProduct ? buyer.email : seller.email }}</p>
+  </div>
+  <div class="body">
+    <ng-container *ngIf="isOnShopcart">
+      <div class="quantity-container">
+        <p>Quantity: {{ card.quantity }}</p>
+        <p>TOTAL: ${{ (card.product.price * card.quantity).toFixed(2) }}</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isOnDashboard && !isAggregatedProduct">
+      <div class="quantity-container">
+        <p>Quantity: {{ card.quantity }}</p>
+        <p>TOTAL: ${{ (card.product.price * card.quantity).toFixed(2) }}</p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isAggregatedProduct">
+      <div class="total-amounts">
+        <p>Total quantity: {{ aggregatedProduct!.totalQuantity }}</p>
+        <p>Total price: {{ '$' + aggregatedProduct!.totalPrice }}</p>
+      </div>
+    </ng-container>
+  </div>
+  <div class="footer" *ngIf="!isAggregatedProduct">
+    <div class="buttons">
+      <button class="modify-button" (click)="changeOrderStatus('CONFIRMED')"
+        *ngIf="isOnDashboard && isSeller && filter === 'PENDING'" id="confirm-button">
+        <mat-icon aria-hidden="false" aria-label="confirm icon" fontIcon="done" matTooltip="Confirm order"></mat-icon>
+      </button>
+
+      <button class="modify-button" (click)="removeItem()" id="remove-button" *ngIf="isOnShopcart">
+        <mat-icon aria-hidden="false" aria-label="remove icon" fontIcon="clear" matTooltip="Remove order"></mat-icon>
+      </button>
+
+      <button class="modify-button" (click)="changeOrderStatus('CANCELLED')" id="remove-button"
+        *ngIf="isOnDashboard && filter === 'PENDING'">
+        <mat-icon aria-hidden="false" aria-label="remove icon" fontIcon="clear" matTooltip="Cancel order"></mat-icon>
+      </button>
+
+      <button class="modify-button" (click)="reOrder(card.id!)" id="redo-button"
+        *ngIf="isOnDashboard && !isSeller && (filter === 'CONFIRMED' || filter === 'CANCELLED')">
+        <mat-icon aria-hidden="false" aria-label="remove icon" fontIcon="loop" matTooltip="Order again"></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

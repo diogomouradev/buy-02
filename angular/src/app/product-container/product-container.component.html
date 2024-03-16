@@ -1,0 +1,16 @@
+<div class="top-bar">
+  <button type="button" pButton pRipple label="Add product" icon="" (click)="manageProducts($event)" class="add-product"
+    *ngIf="showAddButton"></button>
+</div>
+<div class="product-container">
+  <div class="wrapper" #container>
+    <ng-container *ngFor="let product of products$ | async; trackBy: trackById">
+      <app-product-card [currentUser]="currentUser" [product]="product"></app-product-card>
+    </ng-container>
+  </div>
+</div>
+<ng-container *ngIf="showProductForm">
+  <dialog #productDialog id="product-dialog">
+    <app-add-product [modalRef]="productDialog"></app-add-product>
+  </dialog>
+</ng-container>

@@ -1,0 +1,119 @@
+.order-container {
+  margin: 1rem 1rem 0.5rem;
+  position: relative;
+  width: 80vw;
+  border: 1px solid #ffffff4d;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.order-container:hover, .order-container:active {
+  border: 1px solid #c185fb;
+  box-shadow: 0 0 10px #c185fb;
+}
+
+:host(.problematic-order) .order-container {
+  border: 1px solid #ff0079;
+  box-shadow: 0 0 10px #ff007980;
+}
+
+:host(.problematic-order) .order-container:hover,
+:host(.problematic-order) .order-container:active {
+  border: 1px solid #ff0079;
+  box-shadow: 0 0 10px #ff007980;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+}
+
+.header p {
+  margin: 0;
+}
+
+.header h2 {
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.body p {
+  padding-top: 1rem;
+}
+
+.body > input {
+  width: 3rem;
+  padding-left: 3px;
+  text-align: center;
+  margin-left: 3px;
+}
+
+.quantity-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-amounts {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.modify-button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.modify-button:hover, .modify-button:active {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#remove-button:hover, #remove-button:active {
+  color: #ff0000;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+#confirm-button:hover, #confirm-button:active {
+  color: #ff0000;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+#redo-button:hover, #redo-button:active {
+  color: #c54500;
+  text-shadow: 0 0 5px rgba(197, 59, 0, 0.5);
+}
+
+@media screen and (width >= 700px) {
+  .order-container {
+    width: 70vw;
+    max-width: 500px;
+  }
+}
+
+@media screen and (width >= 1100px) {
+  .order-container {
+    width: 40vw;
+    max-width: 500px;
+  }
+}
+
+@media screen and (width < 700px) {
+  .order-container {
+    width: calc(100vw - 40px);
+    max-width: 500px;
+  }
+}

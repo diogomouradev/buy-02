@@ -1,0 +1,56 @@
+---
+- name: Deploy to production
+  gather_facts: false
+  hosts: deployservers
+  become: true
+  become_user: root
+  tasks:
+
+    - name: Clone the repository
+      shell: |
+        mkdir -p buy-02
+        cd buy-02
+        if [ ! -d ".git" ]; then
+          git clone https://github.com/Draganchi/buy-02.git .
+          git checkout main
+        else
+          git pull origin main
+        fi
+
+    - name: Run create.sh
+      command:
+        chdir: buy-02
+        cmd: sh ./create.sh
+
+    - name: Make it trusty
+      command: 
+        cmd: mkcert -install 
+
+    - name: Ensure pip is installed (Debian)
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Install Docker SDK for Python
+      apt:
+        name: python3-docker
+        state: present
+
+    - name: Download Docker Compose installation script
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: "u+x,g+x"
+
+    - name: Make Docker Compose executable
+      file:
+        path: /usr/local/bin/docker-compose
+        mode: "u+x,g+x"
+
+    - name: Run the Docker Compose command
+      command:
+        chdir: /root/buy-02 # Adjusted path
+        cmd: docker-compose -f ./docker-compose-prod.yml up -d --build
+      environment:
+        mongodbusername: Gritlab
+        mongodbpass: Gritlab

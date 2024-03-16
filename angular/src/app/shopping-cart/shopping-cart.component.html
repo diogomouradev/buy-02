@@ -1,0 +1,13 @@
+<div class="top-bar">
+  <p>Payment method: <span><br>Pay on delivery</span></p>
+  <button (click)="confirmOrder()" matTooltip="Confirm order">CONFIRM ORDER</button>
+</div>
+<div class="order-container">
+  <ng-container *ngFor="let message of errorMessages">
+    <h4 *ngIf="!empty">{{ message }}</h4>
+  </ng-container>
+  <ng-container *ngFor="let card of cartItems$ | async">
+    <app-order-card [card]="card" [class.problematic-order]="isProblematicOrder(card.id!)"></app-order-card>
+  </ng-container>
+  <h2 *ngIf="empty">Your cart is empty</h2>
+</div>

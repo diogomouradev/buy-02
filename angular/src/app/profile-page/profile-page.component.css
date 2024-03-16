@@ -1,0 +1,160 @@
+.profile-container {
+  width: 80vw;
+  height: calc(80vh - 100px);
+  margin-left: 10vw;
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.profile-page {
+  text-align: justify;
+  justify-content: center;
+  max-width: 600px;
+  margin-top: 200px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  width: 100%;
+  gap: 1rem;
+
+}
+
+.footer button {
+  justify-self: center;
+  max-width: 250px;
+  min-width: 200px;
+  width: 33vw;
+}
+
+
+#profile-picture {
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+}
+
+.profile-container h3 {
+  font-size: 2rem;
+  margin: 1rem;
+}
+h3 {
+  padding-left: 37px;
+}
+.profile-container p {
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+.profile-close {
+  position: relative;
+  float: right;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background-color: #08101c;
+  color: #3b0948;
+  border: 1px solid #f1c75c;
+  box-shadow: none;
+  outline: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 12;
+}
+
+.profile-close:hover {
+  box-shadow: 0 0 5px #376027;
+  transform: scale(1.1);
+}
+
+.confirm {
+  justify-content: center;
+}
+
+.confirm p {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container button {
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+#no-button {
+  background-color: #ff7373;
+}
+
+.delete-user {
+  background-color: #ff7373;
+  border: 1px solid #ff7373;
+}
+
+.delete-user:hover {
+  background-color: #ff5266;
+  border: 1px solid #ff5266;
+  color: azure;
+}
+
+.profile-form {
+  border-radius: 10px !important;
+  box-shadow: 0 0 10px #cacaf433 !important;
+  min-width: 200px;
+}
+
+@media screen and (width < 285px){
+  .footer button {
+    width: 95%;
+    justify-self: center;
+  }
+}
+
+@media screen and (width < 700px){
+  .form {
+    width: 60vw;
+  }
+}
+
+@media screen and (width >= 700px){
+  .form {
+    width: 40vw;
+    max-width: 400px;
+  }
+}
+
+@media screen and (width < 400px){
+  .profile-form {
+    width: 100vw;
+  }
+}
+
+@media screen and (width < 500px){
+  .profile-form {
+    width: 90vw;
+  }
+
+  .form {
+    width: 90vw;
+  }
+}

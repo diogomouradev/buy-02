@@ -1,0 +1,32 @@
+<div class="search-container">
+  <div class="top-bar">
+    <div class="search-bar">
+      <button (click)="reset()" class="search-button">
+        <mat-icon aria-hidden="false" aria-label="reset icon" fontIcon="refresh" matTooltip="Reset"></mat-icon>
+      </button>
+      <input type="text" class="search-field" [(ngModel)]="searchText" maxlength="100" (keyup.enter)="search()">
+      <button type="submit" (click)="search()" class="search-button">
+        <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="search" matTooltip="Search"></mat-icon>
+      </button>
+    </div>
+    <div class="filter-bar">
+      <div class="price-div">
+        <label for="min-price">min price:</label>
+        <input type="number" class="price-filter" [(ngModel)]="minPrice" (keyup.enter)="search()" name="min-price"
+          id="min-price">
+      </div>
+      <div class="price-div">
+        <label for="max-price">max price:</label>
+        <input type="number" class="price-filter" [(ngModel)]="maxPrice" (keyup.enter)="search()" name="max-price"
+          id="max-price">
+      </div>
+    </div>
+  </div>
+  <div class="products-container">
+    <div class="wrapper">
+      <ng-container *ngFor="let product of products$ | async">
+        <app-product-card [currentUser]="currentUser" [product]="product"></app-product-card>
+      </ng-container>
+    </div>
+  </div>
+</div>

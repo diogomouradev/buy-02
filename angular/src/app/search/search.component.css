@@ -1,0 +1,99 @@
+.search-container {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.top-bar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: fixed;
+  top: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #121212;
+  z-index: 3;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar > input {
+  margin-left: 5px;
+  width: 25vw;
+  height: 2rem;
+  margin-right: 1vw;
+  min-width: 250px;
+  padding: 5px;
+  color: #EC0000FF;
+  background-color: transparent;
+  border: solid 1px #EC0000FF;
+  border-radius: 7px;
+}
+
+.search-button {
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  padding: 2px;
+  color: #EC0000FF;
+  background-color: transparent;
+}
+
+.search-bar > button:hover {
+  transform: scale(1.2);
+  color: #fd7272;
+  cursor: pointer;
+}
+
+.filter-bar {
+  display: flex;
+  padding-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.price-div > label {
+  margin-right: 5px;
+  color: #EC0000FF;
+}
+
+.price-div label:hover,
+.price-div label:focus {
+  cursor: pointer;
+  color: #fd7272;
+}
+
+.price-filter {
+  width: 4rem;
+  padding: 0 3px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.price-filter:focus,
+.price-filter:hover {
+  cursor: pointer;
+  border-bottom: 1px solid #fd7272;
+}
+
+
+.wrapper {
+  padding-top: 100px;
+  display: flex;
+  flex-wrap: column-wrap;
+  justify-content: center;
+  width: 100vw;
+  gap: 0.5rem;
+}

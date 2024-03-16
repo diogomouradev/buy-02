@@ -1,0 +1,22 @@
+- update password:
+  - dont send it if the confirm and password dont match! 
+
+#- not seller:
+#  - dont show dashboard button or let the user go there
+#  - change routeguard to check role as well
+
+#- update avatar:
+#  - update navbar as well
+
+- delete product:
+  - close modal
+  - refresh products
+
+- delete image:
+  - refresh images
+  - rehresf products
+  - update image to placeholder if no image remains
+- 
+
+placeholder, not open in new tab
+

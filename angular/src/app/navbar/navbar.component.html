@@ -1,0 +1,30 @@
+<div class="nav-bar" #navbar>
+  <div class="user-info" (click)="goToProfile()" matTooltip="Go to profile">
+    <div id="image-container">
+      <img [src]="avatar$ | async" alt="profile picture" />
+    </div>
+    <button *ngIf="user$ | async as user" aria-hidden="false" aria-label="profile-button" id="profile-button">{{
+      user.name
+      }}</button>
+  </div>
+  <div id="title" (click)="move('home')">HOUSE OF PRODUCTS</div>
+  <div class="buttons">
+    <button class="dashboard" *ngIf="!home || profile || dash" (click)="showDashboard(false)">
+      <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="home" matTooltip="Go to home"></mat-icon>
+    </button>
+    <button class="dashboard" (click)="move('search')">
+      <mat-icon aria-hidden="false" aria-label="home icon" fontIcon="search" matTooltip="Search"></mat-icon>
+    </button>
+    <button class="dashboard" *ngIf="!dash && seller && home" (click)="showDashboard(true)">
+      <mat-icon aria-hidden="false" aria-label="apps icon" fontIcon="apps" matTooltip="Manage your products"></mat-icon>
+    </button>
+    <button class="dashboard" *ngIf="!seller" (click)="move('shopcart')" [matBadge]="badgeItems" matBadgeColor="warn"
+      matBadgeSize="small" [matBadgeHidden]="badgeItems <= 0">
+      <mat-icon aria-hidden="false" aria-label="shopping cart" fontIcon="shopping_cart"
+        matTooltip="Shopping Cart"></mat-icon>
+    </button>
+    <button class="logout" (click)="logout()">
+      <mat-icon aria-hidden="false" aria-label="logout icon" fontIcon="logout" matTooltip="Logout"></mat-icon>
+    </button>
+  </div>
+</div>

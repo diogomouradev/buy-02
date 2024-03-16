@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome Headless 119.0.6045.159 (Mac OS 10.15.7)" package="" timestamp="2023-11-21T17:18:30" id="0" hostname="ali" tests="159" errors="0" failures="0" time="0.33">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/119.0.6045.159 Safari/537.36"/>
+  </properties>
+  <testcase name="ProductContainerComponent should handle the case when there are no products and user is at home" time="0.046" classname="ProductContainerComponent"/>
+  <testcase name="ProductContainerComponent should create" time="0.003" classname="ProductContainerComponent"/>
+  <testcase name="ProductContainerComponent should handle the case when there are no products and user is at dashboard" time="0.003" classname="ProductContainerComponent"/>
+  <testcase name="ProductContainerComponent should display products when there are products" time="0.003" classname="ProductContainerComponent"/>
+  <testcase name="AppComponent should set loggedIn to true for an authenticated route" time="0.003" classname="AppComponent"/>
+  <testcase name="AppComponent should set loggedIn to false for an unauthenticated route" time="0.001" classname="AppComponent"/>
+  <testcase name="AppComponent should update loggedIn when the route changes" time="0.001" classname="AppComponent"/>
+  <testcase name="ProductCardComponent should render product name, price and quantity" time="0.004" classname="ProductCardComponent"/>
+  <testcase name="ProductCardComponent should add blur-filter calss to container when form is open and remove it when closed" time="0.005" classname="ProductCardComponent"/>
+  <testcase name="ProductCardComponent should create" time="0.002" classname="ProductCardComponent"/>
+  <testcase name="ProductCardComponent should get the current user if user is logged in" time="0.002" classname="ProductCardComponent"/>
+  <testcase name="ProductCardComponent hideModal should set modalVisible to false and close the modal" time="0.002" classname="ProductCardComponent"/>
+  <testcase name="ProductCardComponent showModal should set modalVisible to true and open the modal" time="0.002" classname="ProductCardComponent"/>
+  <testcase name="ProductCardComponent should initialize with modalVisible as false" time="0.001" classname="ProductCardComponent"/>
+  <testcase name="ProductCardComponent should call showModal() when the card is clicked" time="0.001" classname="ProductCardComponent"/>
+  <testcase name="AddProductComponent should convert a File to a Blob" time="0.022" classname="AddProductComponent"/>
+  <testcase name="AddProductComponent should not submit product if the form is invalid" time="0.005" classname="AddProductComponent"/>
+  <testcase name="AddProductComponent should create" time="0.004" classname="AddProductComponent"/>
+  <testcase name="AddProductComponent should submit product and update productAdded if the form is valid" time="0.006" classname="AddProductComponent"/>
+  <testcase name="AddProductComponent should reset fileSelected and filename when no file is selected" time="0.004" classname="AddProductComponent"/>
+  <testcase name="AddProductComponent should close the modal" time="0.005" classname="AddProductComponent"/>
+  <testcase name="AddProductComponent should initialize correctly" time="0.004" classname="AddProductComponent"/>
+  <testcase name="AddProductComponent should correctly validate the form" time="0.003" classname="AddProductComponent"/>
+  <testcase name="AddProductComponent should set fileSelected and filename when a file is selected" time="0.004" classname="AddProductComponent"/>
+  <testcase name="DashboardComponent should initialize properties correctly when no cookies are present" time="0.006" classname="DashboardComponent"/>
+  <testcase name="DashboardComponent should initialize properties correctly when cookies are present" time="0.002" classname="DashboardComponent"/>
+  <testcase name="DashboardComponent should create" time="0.002" classname="DashboardComponent"/>
+  <testcase name="DashboardComponent should manage products and prevent default action" time="0.002" classname="DashboardComponent"/>
+  <testcase name="DashboardComponent should call getOwnerProducts when productService.productAdded$ emits" time="0.002" classname="DashboardComponent"/>
+  <testcase name="DashboardComponent should update component properties when formOpen$ emits true" time="0.002" classname="DashboardComponent"/>
+  <testcase name="DashboardComponent should update component properties when formOpen$ emits false" time="0.003" classname="DashboardComponent"/>
+  <testcase name="DashboardComponent should react to formOpen state changes" time="0.009" classname="DashboardComponent"/>
+  <testcase name="DashboardComponent should update userProducts$ when productService.productAdded$ emits" time="0.003" classname="DashboardComponent"/>
+  <testcase name="HomeComponent should create" time="0.002" classname="HomeComponent"/>
+  <testcase name="LoginComponent should create" time="0.004" classname="LoginComponent"/>
+  <testcase name="LoginComponent should initialize variables" time="0.001" classname="LoginComponent"/>
+  <testcase name="LoginComponent should not validate form: no password" time="0.002" classname="LoginComponent"/>
+  <testcase name="LoginComponent should validate correct form" time="0.001" classname="LoginComponent"/>
+  <testcase name="LoginComponent should not validate form: no name" time="0.002" classname="LoginComponent"/>
+  <testcase name="LoginComponent should navigate to register page" time="0.001" classname="LoginComponent"/>
+  <testcase name="LoginComponent should not validate form: long password" time="0.001" classname="LoginComponent"/>
+  <testcase name="LoginComponent should not validate form: long name" time="0.001" classname="LoginComponent"/>
+  <testcase name="LoginComponent should call onSubmit and navigate to home page on succesfull login" time="0.002" classname="LoginComponent"/>
+  <testcase name="NavbarComponent should call navigate when moving" time="0.002" classname="NavbarComponent"/>
+  <testcase name="NavbarComponent should create" time="0.001" classname="NavbarComponent"/>
+  <testcase name="NavbarComponent should call resetState when logging out" time="0.001" classname="NavbarComponent"/>
+  <testcase name="NavbarComponent should call logout when logging out" time="0.002" classname="NavbarComponent"/>
+  <testcase name="AuthService should have the correct address for the HTTP request" time="0.001" classname="AuthService"/>
+  <testcase name="AuthService should make an HTTP request to get user authentication data" time="0.002" classname="AuthService"/>
+  <testcase name="AuthService should be created" time="0.002" classname="AuthService"/>
+  <testcase name="ProfilePageComponent should update formValid to false for invalidForm" time="0.005" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should set fileSelected to null when no file is selected" time="0" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should update formValid to true for validForm" time="0" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should set fileSelected and filename when a file is selected" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should open updateAvatarForm and set buttonClicked and formOpen to true" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should delete the avatar" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should create" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should handle errors when updating the user" time="0.002" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should handle avatar upload error" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should submit the form and update the user" time="0.002" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should hide the modal and reset state variables" time="0" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should validate the user update form" time="0" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should get user authentication and placeholder avatar if user has no avatar" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should convert a File to a Blob" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should not initialize if there is no cookie" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should delete the user" time="0.002" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should react to image and username changes" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should open the user profile form" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should upload the avatar" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should open deleteUserForm and set buttonClicked and formOpen to true" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should get user authentication and avatar" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should open profileform and set buttonClicked and formOpen to true" time="0" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should initialize userUpdateForm with the expected controls" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="ProfilePageComponent should open deleteAvatarForm and set buttonClicked and formOpen to true" time="0.001" classname="ProfilePageComponent"/>
+  <testcase name="FormStateService should be created" time="0" classname="FormStateService"/>
+  <testcase name="FormStateService should set formOpen$ to true" time="0" classname="FormStateService"/>
+  <testcase name="FormStateService should set formOpen$ to false" time="0.001" classname="FormStateService"/>
+  <testcase name="FormStateService should initialize formOpen$ to false" time="0" classname="FormStateService"/>
+  <testcase name="authGuard should be created" time="0" classname="authGuard"/>
+  <testcase name="authGuard should return true user is authenticated and path is &quot;dashboard&quot;" time="0.001" classname="authGuard"/>
+  <testcase name="authGuard should return true and redirect to home if user is authenticated and path is &quot;login&quot;" time="0" classname="authGuard"/>
+  <testcase name="ProductService should add a product with media" time="0.001" classname="ProductService"/>
+  <testcase name="ProductService should delete a product" time="0" classname="ProductService"/>
+  <testcase name="ProductService should update productAdded$" time="0" classname="ProductService"/>
+  <testcase name="ProductService should be created" time="0" classname="ProductService"/>
+  <testcase name="ProductService should get owner products" time="0.001" classname="ProductService"/>
+  <testcase name="ProductService should get products by user ID" time="0" classname="ProductService"/>
+  <testcase name="ProductService should update userProducts$" time="0" classname="ProductService"/>
+  <testcase name="ProductService should get owner" time="0.001" classname="ProductService"/>
+  <testcase name="ProductService should get products" time="0" classname="ProductService"/>
+  <testcase name="ProductService should handle error when adding a product" time="0.001" classname="ProductService"/>
+  <testcase name="ProductService should add a product without media" time="0" classname="ProductService"/>
+  <testcase name="DataService should send and receive product IDs" time="0.001" classname="DataService"/>
+  <testcase name="DataService should change the delete image index" time="0" classname="DataService"/>
+  <testcase name="DataService should send and receive data" time="0" classname="DataService"/>
+  <testcase name="DataService should be created" time="0" classname="DataService"/>
+  <testcase name="UserService should get owner info" time="0" classname="UserService"/>
+  <testcase name="UserService should send a signup request" time="0.002" classname="UserService"/>
+  <testcase name="UserService should get user info" time="0.001" classname="UserService"/>
+  <testcase name="UserService should delete cookie and log out" time="0.001" classname="UserService"/>
+  <testcase name="UserService should be created" time="0.001" classname="UserService"/>
+  <testcase name="UserService should send a login request" time="0" classname="UserService"/>
+  <testcase name="UserService should send a user info request" time="0.001" classname="UserService"/>
+  <testcase name="UserService should update a user" time="0" classname="UserService"/>
+  <testcase name="UserService should delete user" time="0" classname="UserService"/>
+  <testcase name="UserService signup url should be environment.signupURL" time="0.001" classname="UserService"/>
+  <testcase name="UserService signup url should be environment.loginURL" time="0" classname="UserService"/>
+  <testcase name="MediaService should upload avatar" time="0.001" classname="MediaService"/>
+  <testcase name="MediaService formatMedia should return placeholder if no media" time="0" classname="MediaService"/>
+  <testcase name="MediaService formatMultipleMedia should format valid media" time="0.001" classname="MediaService"/>
+  <testcase name="MediaService formatMedia should return placeholder if no media" time="0" classname="MediaService"/>
+  <testcase name="MediaService should add media" time="0.001" classname="MediaService"/>
+  <testcase name="MediaService should update imageAddedSource" time="0" classname="MediaService"/>
+  <testcase name="MediaService should get product media" time="0" classname="MediaService"/>
+  <testcase name="MediaService formatMedia should format valid media" time="0" classname="MediaService"/>
+  <testcase name="MediaService should return user avatar" time="0" classname="MediaService"/>
+  <testcase name="MediaService should return product thumbnail" time="0.001" classname="MediaService"/>
+  <testcase name="MediaService should delete avatar" time="0" classname="MediaService"/>
+  <testcase name="MediaService should be created" time="0" classname="MediaService"/>
+  <testcase name="MediaService should delete product image" time="0.001" classname="MediaService"/>
+  <testcase name="ValidatorService should report an invalid password" time="0" classname="ValidatorService"/>
+  <testcase name="ValidatorService should be created" time="0.001" classname="ValidatorService"/>
+  <testcase name="ValidatorService should validate a number correctly" time="0" classname="ValidatorService"/>
+  <testcase name="ValidatorService should report an invalid number" time="0" classname="ValidatorService"/>
+  <testcase name="ValidatorService should validate a matching password correctly" time="0" classname="ValidatorService"/>
+  <testcase name="SignupComponent should create" time="0.005" classname="SignupComponent"/>
+  <testcase name="SignupComponent should validate correct form" time="0.003" classname="SignupComponent"/>
+  <testcase name="SignupComponent should call onSubmit and navigate to home page on successfull signup" time="0.002" classname="SignupComponent"/>
+  <testcase name="SignupComponent should not validate: passwords don't match" time="0.002" classname="SignupComponent"/>
+  <testcase name="SignupComponent should set role as 'SELLER'" time="0.001" classname="SignupComponent"/>
+  <testcase name="SignupComponent should not validate: long name" time="0.002" classname="SignupComponent"/>
+  <testcase name="SignupComponent should set role as 'CLIENT'" time="0.002" classname="SignupComponent"/>
+  <testcase name="SignupComponent should initialize variables" time="0.002" classname="SignupComponent"/>
+  <testcase name="SignupComponent should not validate: invalid email" time="0.002" classname="SignupComponent"/>
+  <testcase name="SignupComponent should not validate: short name" time="0.002" classname="SignupComponent"/>
+  <testcase name="ProductCardModalComponent should update formValid property" time="0.003" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should increment currentImageIndex when calling nextImage()" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should convert File to Blob" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should subscribe to DataService and update properties in ngOnInit" time="0.013" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should submit product and update productAdded when form is valid" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should decrement currentImageIndex when calling prevImage()" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should wrap around currentImageIndex when calling nextImage()" time="0.004" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should send deleteProduct request to product service" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should reset fileSelected and set imageValid to false when no file is selected" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should set fileSelected and imageValid when a file is selected" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should initialize user data and product thumbnail in ngOnInit" time="0.006" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should wrap around currentImageIndex when calling prevImage()" time="0.001" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should have a product from the @Input" time="0.005" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should delete an image by index and update related properties" time="0.005" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should open confirm" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should set form values based on product" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should open imageDelete confirm" time="0.002" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should close the modal and set formOpen to false" time="0.001" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should set confirm and deleteConfirm to false" time="0.003" classname="ProductCardModalComponent"/>
+  <testcase name="ProductCardModalComponent should create" time="0.003" classname="ProductCardModalComponent"/>
+  <testcase name="StateService should handle getAuth error by deleting the cookie and navigating" time="0.001" classname="StateService"/>
+  <testcase name="StateService should not initialize the state when there is no cookie" time="0" classname="StateService"/>
+  <testcase name="StateService should initialize the state when there is a cookie" time="0.001" classname="StateService"/>
+  <testcase name="StateService should be created" time="0" classname="StateService"/>
+  <system-out>
+    <![CDATA[Chrome Headless 119.0.6045.159 (Mac OS 10.15.7) LOG: 'An error occurred'
+,Chrome Headless 119.0.6045.159 (Mac OS 10.15.7) WARN: 'Spec 'ProductService should update productAdded$' has no expectations.'
+,Chrome Headless 119.0.6045.159 (Mac OS 10.15.7) WARN: 'Spec 'ProductService should update userProducts$' has no expectations.'
+,Chrome Headless 119.0.6045.159 (Mac OS 10.15.7) WARN: 'Spec 'DataService should send and receive product IDs' has no expectations.'
+,Chrome Headless 119.0.6045.159 (Mac OS 10.15.7) WARN: 'Spec 'MediaService should update imageAddedSource' has no expectations.'
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

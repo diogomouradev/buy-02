@@ -1,0 +1,81 @@
+<div class="profile-container">
+  <ng-container *ngIf="user$ | async as user">
+    <div class="profile-page" *ngIf="!formOpen" #profile>
+      <img id="profile-picture" [src]="avatar$ | async" alt="profile-picture" />
+      <h3>{{ user.name }}</h3>
+      <p>{{ user.email }}</p>
+      <p>{{ user.role }}</p>
+      <div class="footer">
+        <button pButton pRipple label="ORDERS" icon="pi pi-user" (click)="move('dashboard')"></button>
+        <button pButton pRipple label="EDIT PROFILE" icon="pi pi-user" (click)="openForm('profile')"></button>
+        <button pButton pRipple label="UPDATE AVATAR" icon="pi pi-user" (click)="openForm('avatar')"></button>
+        <button *ngIf="(avatar$ | async) !== placeholder" pButton pRipple label="DELETE AVATAR" icon="pi pi-user"
+          (click)="openForm('deleteAvatar')"></button>
+        <button pButton pRipple label="DELETE USER" class="delete-user" icon="pi pi-user"
+          (click)="openForm('deleteUser')"></button>
+      </div>
+    </div>
+
+    <div class="container flex justify-content-center mt-5" *ngIf="profileFormOpen">
+      <div class="surface-card p-4 shadow-2 border-round lg:w-5 profile-form" #profileForm>
+        <button class="profile-close" (click)="hideModal()">X</button>
+        <div class="text-900 text-3xl font-medium mb-5">Edit information</div>
+        <div>
+          <form [formGroup]="userUpdateForm" (input)="onValidate()" (ngSubmit)="onSubmit()">
+            <label for="update-username" class="block text-900 font-medium mb-2">Username</label>
+            <input id="update-username" autocomplete="username" type="text" [placeholder]="user.name" pInputText
+              class="w-full mb-3" name="name" formControlName="name" />
+
+            <label for="update-email" class="block text-900 font-medium mb-2">Email</label>
+            <input id="update-email" autocomplete="email" type="text" [placeholder]="user.email" pInputText
+              class="w-full mb-3" formControlName="email" />
+
+            <label for="update-password" class="block text-900 font-medium mb-2">Change Password?</label>
+            <input id="update-password" autocomplete="current-password" type="password" placeholder="New password"
+              pInputText class="w-full mb-3" formControlName="password" />
+
+            <label for="update-confirm-password" class="block text-900 font-medium mb-2">Confirm new password</label>
+            <input id="update-confirm-password" autocomplete="current-password" type="password"
+              placeholder="Confirm new password" pInputText class="w-full mb-6" formControlName="confirmPassword" />
+
+            <button [disabled]="!formValid" type="submit" pButton pRipple label="Update" icon="pi pi-user"
+              class="w-full"></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="surface-card p-4 shadow-2 border-round lg:w-5 form half" #avatarForm *ngIf="updateAvatarFormOpen">
+      <button class="profile-close" (click)="hideModal()">X</button>
+      <div class="text-900 text-3xl font-medium mb-6">Upload image</div>
+      <form (ngSubmit)="submitAvatar()">
+        <div class="flex align-items-center justify-content-between mb-6">
+          <div class="upload-container">
+            <label for="image" class="block text-900 font-medium mb-2">Add an image?</label>
+
+            <p-fileUpload mode="basic" #imageUpload chooseLabel="Choose" name="image" accept="image/*"
+              (onSelect)="onFileSelected($event)" class="w-full half"></p-fileUpload>
+          </div>
+        </div>
+        <button type="submit" pButton pRipple label="Update" icon="pi pi-user" class="w-full bottom"></button>
+      </form>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="deleteAvatarFormOpen">
+    <div class="confirm">
+      <p>Are you sure?</p>
+      <div class="button-container">
+        <button pButton pRipple label="YES" (click)="deleteAvatar()"></button>
+        <button pButton pRipple label="NO" id="no-button" (click)="hideModal()"></button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="deleteUserFormOpen">
+    <div class="confirm">
+      <p>Are you sure?</p>
+      <div class="button-container">
+        <button pButton pRipple label="YES" (click)="deleteUser()"></button>
+        <button pButton pRipple label="NO" id="no-button" (click)="hideModal()"></button>
+      </div>
+    </div>
+  </ng-container>
+</div>

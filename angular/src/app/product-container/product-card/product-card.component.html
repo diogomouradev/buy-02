@@ -1,0 +1,18 @@
+<div class="card-container" (click)="showModal()" #container>
+  <div class="picture-container">
+    <img [src]="imageSrc$ | async" alt="" class="product-image" />
+  </div>
+  <div class="body-container">
+    <h3 class="product-title">{{ product.name }}</h3>
+    <div class="product-price">${{ product.price }}</div>
+    <div class="product-quantity">items left: {{ product.quantity }}</div>
+  </div>
+  <div class="product-footer">
+  </div>
+</div>
+<ng-container *ngIf="modalVisible">
+  <dialog #productModal>
+    <app-product-card-modal [user]="currentUser" [dialog]="productModal" [product]="product"
+      (id)="('productCardModal' + product.id)"></app-product-card-modal>
+  </dialog>
+</ng-container>

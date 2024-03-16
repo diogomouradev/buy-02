@@ -1,0 +1,58 @@
+.top-bar {
+  top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  width: 100vw;
+  padding-left: 1rem;
+  padding-right: 1.3rem;
+  align-items: center;
+  z-index: 3;
+  background-color: #121212;
+}
+
+.top-bar p {
+  color: #EC0000FF;
+}
+
+.top-bar span {
+  font-weight: bold;
+}
+
+.top-bar > button {
+  margin-top: 0.5rem;
+  max-width: 150px;
+  padding: 5px;
+  border-radius: 7px;
+  border: 1px solid #EC0000FF;
+  color: #ec0000;
+  background-color: #0e0e0e;
+}
+
+.top-bar > button:hover {
+  background-color: #EC0000FF;
+  color: #0e0e0e;
+  transform: scale(1.1);
+  font-weight: bold;
+  box-shadow: 0 0 3px #EC0000FF;
+  cursor: pointer;
+}
+
+.order-container {
+  margin-top: 150px;
+  display: flex;
+  width: 100vw;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  word-wrap: break-word;
+  padding-bottom: 2rem;
+}
+
+.order-container h4 {
+  color: #ff3c3c;
+  text-shadow: 0 0 3px #ff3c3c;
+}

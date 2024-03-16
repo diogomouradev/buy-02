@@ -1,0 +1,113 @@
+.nav-bar {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  color: azure;
+  background-color: #121212;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  margin-left: 1rem;
+  align-items: center;
+  cursor: pointer;
+  color: #ec0000;
+  font-size: 1.2rem;
+  width: calc(20vw - 1rem);
+}
+
+#image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#image-container img {
+  background-size: contain;
+  overflow: hidden;
+  border-radius: 50%;
+  height: 3rem;
+  aspect-ratio: 1;
+  border: 1px solid #EC0000FF;
+  box-shadow: 1px 1px 5px rgba(206, 69, 69, 0.3);
+}
+
+#title {
+  clear: both;
+  padding-left:1rem;
+  padding-right:1rem;
+  color: #ff7171;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px #c04949
+;
+  width: 60vw;
+  text-align: center;
+}
+
+#title:hover {
+  color: #ce4545;
+  cursor: pointer;
+}
+
+.buttons {
+  margin-right: 1rem;
+  width: calc(20vw - 1rem);
+  text-align: right;
+  min-width: 140px;
+}
+
+.buttons button {
+  background-color: transparent;
+  width: 2rem;
+  height: 2rem;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  color: #EC0000FF;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  transform: scale(1.2);
+  color: #ce4545;
+}
+
+#profile-button {
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: #EC0000FF;
+  cursor: pointer;
+}
+
+#profile-button:hover {
+  color: #ce4545;
+}
+
+@media screen and (width <= 629px) {
+  #title {
+    display: none;
+  }
+}
+
+@media screen and (width <= 300px) {
+  #profile-button {
+    width: 0;
+    opacity: 0;
+  }
+
+  #title {
+    display: none;
+  }
+}

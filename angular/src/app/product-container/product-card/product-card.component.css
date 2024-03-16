@@ -1,0 +1,191 @@
+.card-container {
+  min-width: calc(100vw - 20px);
+  width: 20vw;
+  min-height: 100px !important;
+  height: 100%;
+  padding: 10px;
+  margin: 10px;
+  background-color: #08101c;
+  box-shadow: 2px 2px 13px 2px #EC0000FF34;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #EC0000FF;
+}
+
+.card-container:hover {
+  transform: scale(1.02);
+  box-shadow: 2px 2px 13px 2px rgba(253, 111, 111, 0.51);
+}
+
+.picture-container {
+  position: relative;
+  height: 30%;
+}
+
+.body-container {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 28% !important;
+  gap: 1.5rem;
+}
+
+.product-image {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+  object-position: center center;
+  overflow: hidden;
+}
+
+.product-title {
+  font-size: 1.2rem;
+}
+
+.product-price {
+
+}
+
+.product-quantity {
+  font-size: 1rem;
+}
+
+.product-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#close-button {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #08101c;
+  color: azure;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.info-button {
+  font-size: 1.1rem;
+  height: 1.5rem;
+  overflow: hidden;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  background-color: #EC0000FF;
+  color: #08101c;
+}
+
+.info-button:hover {
+  font-weight: bold;
+  transform: scale(1.1);
+  overflow: hidden;
+  background-color: transparent;
+  color: #EC0000FF;
+}
+
+dialog {
+  position: fixed;
+  top: 15%;
+  left:calc(10% - 4rem);
+  z-index: 7;
+  height: 80vh;
+  width: 80vw;
+  border: none;
+  margin: auto;
+  max-width: 600px;
+}
+
+@media screen and (height < 900px) {
+  dialog {
+    height: calc(100vh - 2rem);
+    top: 2rem;
+    z-index: 1000;
+  }
+}
+
+@media screen and (width >= 650px) {
+  .card-container {
+    min-width: 40vw;
+  }
+
+  .body-container {
+    margin-top: 17%;
+  }
+}
+
+@media screen and (width >= 1000px) {
+  .card-container {
+    min-width: 23vw;
+  }
+
+  .body-container {
+    margin-top: 18%;
+  }
+}
+
+@media screen and (width >= 1200px) {
+  .card-container {
+    min-width: 20vw;
+  }
+
+.body-container {
+  margin-top: 18%;
+  }
+}
+
+@media screen and (width < 700px) {
+  dialog {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: none;
+    z-index: 1000;
+  }
+}
+
+@media screen and (height < 800px){
+  dialog {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: none;
+    z-index: 1000;
+  }
+}
+
+@media screen and (width <= 650px){
+  .card-container {
+    min-width: calc(50vw - 40px);
+  }
+
+  .body-container {
+    margin-top: 12%;
+  }
+}
+
+@media screen and (width <= 500px) {
+  .card-container {
+    min-width: calc(100vw - 40px);
+  }
+
+  .body-container {
+    margin-top: 20%;
+  }
+}

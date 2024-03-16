@@ -1,0 +1,45 @@
+<div class="container flex justify-content-center mt-5 register">
+  <div class="surface-card p-4 shadow-2 border-round lg:w-5 form reg-forms">
+    <div class="text-center mb-5">
+      <div class="text-900 text-3xl font-medium mb-3">Welcome to the Service</div>
+      <span class="text-600 font-medium line-height-3">Already registered?</span>
+      <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" (click)="goToLogin()">Log in</a>
+    </div>
+
+    <div>
+      <form [formGroup]="registerForm" (input)="onValidate()" (ngSubmit)="onSubmit()">
+        <label for="register-username" class="block text-900 font-medium mb-2">Username</label>
+        <input id="register-username" autocomplete="username" type="text" placeholder="Username" pInputText
+          class="w-full mb-3" formControlName="name">
+
+        <label for="register-email" class="block text-900 font-medium mb-2">Email</label>
+        <input id="register-email" autocomplete="email" type="text" placeholder="Email address" pInputText
+          class="w-full mb-3" formControlName="email">
+
+        <label for="register-password" class="block text-900 font-medium mb-2">Password</label>
+        <input id="register-password" autocomplete="current-password" type="password" placeholder="Password" pInputText
+          class="w-full mb-3" formControlName="password">
+
+        <label for="register-confirm-password" class="block text-900 font-medium mb-2">Confirm password</label>
+        <input id="register-confirm-password" autocomplete="current-password" type="password"
+          placeholder="Confirm password" pInputText class="w-full mb-3" formControlName="confirmPassword">
+
+        <div class="flex align-items-center justify-content-between mb-3">
+          <div class="flex align-items-center">
+            <input id="register-seller" name="hide" class="hidden" value="this is a hack for p-checkbox" />
+            <p-checkbox id="register-seller" name="seller" [binary]="true" styleClass="mr-2"
+              formControlName="role"></p-checkbox>
+            <label for="register-seller" class="text-900">Register as seller</label>
+          </div>
+        </div>
+        <div class="error-message" ngClass="error ? 'error' : 'hide'">
+          <p>{{ error }} </p>
+        </div>
+
+
+        <button [disabled]="!formValid" type="submit" pButton pRipple label="Register" icon="pi pi-user"
+          class="w-full"></button>
+      </form>
+    </div>
+  </div>
+</div>

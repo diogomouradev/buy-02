@@ -1,0 +1,147 @@
+<div class="modal-container">
+  <div class="modal-wrap" (keydown)="handleEscDown($event)">
+    <button class="close-button" (click)="hideModal()" matTooltip="Close view">X</button>
+    <div class="mat-tab-container" (keydown)="handleEscDown($event)">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" #tabGroup>
+        <mat-tab label="Info">
+          <ng-template matTabContent>
+            <div class="product-tab-container">
+              <div class="product-image-container">
+                <ng-container *ngIf="images.length < 1 && !imageDeleteConfirm">
+                  <img [src]="picture" alt="product picture" class="product-modal-image"
+                    (click)="openImageInNewTab(picture)" />
+                </ng-container>
+                <ng-container *ngIf="images && images.length > 0 && !imageDeleteConfirm">
+                  <div class="image-container">
+                    <img [src]="images[currentImageIndex]" alt="product picture" class="product-modal-image"
+                      (click)="openImageInNewTab(images[currentImageIndex])" />
+                    <div class="image-navigation">
+                      <button *ngIf="product.userId === user?.id && images[0] !== placeholder" id="delete-image-button"
+                        (click)="openConfirm('image')">
+                        <mat-icon aria-hidden="false" aria-label="delete icon" fontIcon="delete"></mat-icon>
+                      </button>
+                      <button (click)="prevImage()" [disabled]="currentImageIndex === 0" *ngIf="images.length > 1">
+                        <mat-icon aria-hidden="false" aria-label="arrow left"
+                          fontIcon="arrow_back_ios_new_icon"></mat-icon>
+                      </button>
+                      <span *ngIf="images.length > 1">{{ currentImageIndex + 1 }} / {{ images.length }}</span>
+                      <button (click)="nextImage()" [disabled]="currentImageIndex === images.length - 1"
+                        *ngIf="images.length > 1">
+                        <mat-icon aria-hidden="false" aria-label="arrow right"
+                          fontIcon="arrow_forward_ios_icon"></mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="imageDeleteConfirm">
+                  <div class="confirm-image-container">
+                    <p>Are you sure?</p>
+                    <div>
+                      <button class="confirm-button" pButton pRiple label="Yes"
+                        (click)="deleteImage(currentDeleteIndex)"></button>
+                      <button class="confirm-button" id="no-button" pButton pRiple label="No"
+                        (click)="closeConfirm('image')"></button>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+              <div class="product-details-body">
+                <h3 id="product-name">{{ product.name }}</h3>
+                <p id="product-description">{{ product.description }}</p>
+                <p id="product-price">${{ product.price }}</p>
+                <p id="product-quantity">items left: <span id="quantity">{{ product.quantity }}</span></p>
+                <div class="owner-info">
+                  <div *ngIf="user?.id !== owner.id">
+                    <h3>Owner details:</h3>
+                    <p id="owner-name">name: {{ owner.name == user?.name ? "you" : owner.name }}</p>
+                    <p id="owner-email">email: {{ owner.email }}</p>
+                  </div>
+                  <div *ngIf="user?.id === owner.id">
+                    <h3>You own this product</h3>
+                  </div>
+                </div>
+                <div class="footer" *ngIf="user?.id !== owner?.id">
+                  <input type="number" id="quantity-input" [(ngModel)]="orderQuantity" min="1" [max]="maxQuantity" />
+                  <button class="buy" pButton pRiple (click)="addToCart()" [disabled]="isAmountValid()"
+                    matTooltip="Add to Cart">
+                    <mat-icon aria-hidden="false" aria-label="buy icon" fontIcon="shopping_cart"></mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Edit" *ngIf="user?.id === product.userId">
+          <ng-template matTabContent>
+            <div class="edit-product-container">
+              <div class="created" *ngIf="requestSent">{{ productResult }}</div>
+
+              <form [formGroup]="productForm" ngSubmit="onSubmit()" (input)="onValidate()">
+                <label for="product-name" class="block text-900 font-medium mb-2">Product name</label>
+                <input id="product-name" type="text" [placeholder]="product ? product.name : 'Product name'" pInputText
+                  class="w-full mb-3" name="product-name" formControlName="name" />
+
+                <label for="product-description" class="block text-900 font-medium mb-2">Description</label>
+                <textarea class="description-textarea" rows="5" maxlength="300" formControlName="description"
+                  name="description" [placeholder]="product.description" pInputTextarea></textarea>
+
+                <div class="flex-auto">
+                  <label for="product-price" class="block text-900 font-medium mb-2">Price</label>
+                  <p-inputNumber mode="currency" currency="USD" locale="en-US" id="product-price" class="mb-3"
+                    name="product-price" formControlName="price"></p-inputNumber>
+                </div>
+
+                <label for="product-quantity" class="block text-900 font-medium mb-2">Quantity</label>
+                <p-inputNumber id="product-quantity" value="product.price" class="mb-3" name="product-quantity"
+                  formControlName="quantity"></p-inputNumber>
+                <button type="submit" id="submit-button" [disabled]="!formValid" pButton pRipple label="Submit"
+                  icon="pi pi-user" (click)="updateProduct()" class="w-full"></button>
+              </form>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Add images" *ngIf="user?.id === product.userId">
+          <ng-template matTabContent>
+            <form (ngSubmit)="submitImage()">
+              <div class="edit-product-container">
+                <div class="flex align-items-center justify-content-between mb-6">
+                  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+                  <div class="upload-container">
+                    <label for="image" class="block text-900 font-medium mb-2">Upload image</label>
+
+                    <p-fileUpload mode="basic" #imageUpload chooseLabel="Choose" name="image"
+                      accept="image/jpeg, image/webp, image/png, image/jpg" (onSelect)="onFileSelected($event)"
+                      class="w-full half"></p-fileUpload>
+                    <input type="file" #fileInput style="display:none" />
+                  </div>
+                </div>
+                <button type="submit" [disabled]="!imageValid" pButton pRipple label="Add" icon="pi pi-user"
+                  class="w-5 bottom"></button>
+              </div>
+            </form>
+          </ng-template>
+
+
+        </mat-tab>
+        <mat-tab label="Delete" *ngIf="user?.id === product.userId">
+          <ng-template matTabContent>
+            <div class="delete-container">
+              <button *ngIf="!confirm" id="delete-button" pButton pRipple label="Delete product?"
+                (click)="openConfirm('product')"></button>
+              <div class="confirm-text" *ngIf="confirm">
+                <p>Are you sure?</p>
+              </div>
+              <div class="button-container">
+                <button *ngIf="confirm" class="confirm-button" pButton pRiple label="Yes"
+                  (click)="deleteProduct(product.id!)"></button>
+                <button *ngIf="confirm" class="confirm-button" pButton pRiple label="No"
+                  (click)="closeConfirm('product')" id="no-button"></button>
+              </div>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
