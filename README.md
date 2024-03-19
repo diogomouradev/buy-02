@@ -38,7 +38,7 @@ all the current backend microservices (user-service, product-service,
 media-service) and the frontend. If there are any potential bugs, security
 vulnerabilities, hotspots or code smells recognized, you can see them under the
 'overall code' tab in each project. You can also see the percentage of
-duplicated lines and test coverage.
+duplicated lines and coverage.
 
 #### Infrastructure
 
