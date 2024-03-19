@@ -24,8 +24,8 @@ of the project is to set up SonarQube for static code analysis for the
 [**buy-01**] project we created earlier
 and implement it in the Jenkins CI/CD pipeline. We also had to implement the
 quality gate functionality and make sure that when we introduce new code into
-the code base that is  not up to the quality gate requirements, it will trigger a
-failure in the pipeline, so it doesn't make it into production. 
+the code base that is not up to the quality gate requirements, it will trigger a
+failure in the pipeline, so it doesn't make it into production.
 
 #### Prerequisites
 
@@ -38,7 +38,7 @@ all the current backend microservices (user-service, product-service,
 media-service) and the frontend. If there are any potential bugs, security
 vulnerabilities, hotspots or code smells recognized, you can see them under the
 'overall code' tab in each project. You can also see the percentage of
-duplicated lines and .
+duplicated lines and test coverage.
 
 #### Infrastructure
 
