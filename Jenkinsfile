@@ -1,25 +1,33 @@
 pipeline {
   agent any
   tools {
-    maven 'Maven 3.9.6'
-    jdk 'JDK17'
+    maven 'FICK MAVEN'
+    jdk 'JDK FICK'
   }
   environment {
-    PROJECT_NAME = 'buy01'
+    PROJECT_NAME = 'buy02'
     // PROJECT_VERSION will be dynamically set within a stage
   }
   
   stages {
+     stage("checkout"){
+         steps{
+            checkout scm
+         }
+     }
     stage('SonarQube Analysis') {
       steps {
+          script{
+              sh "ls -la"
+          }
         script {
-          withSonarQubeEnv('buy-01') {
+          withSonarQubeEnv('buy-02') {
             sh """
               mvn clean verify sonar:sonar \
-              -Dsonar.projectKey=buy-01 \
-              -Dsonar.projectName='buy-01' \
-              -Dsonar.host.url=http://146.190.63.24:9000 \
-              -Dsonar.token=squ_f87e98df6dbb8a136270e5854b74a199abe3c78d
+              -Dsonar.projectKey=buy-02 \
+              -Dsonar.projectName='buy-02' \
+              -Dsonar.host.url=http://161.35.64.134:9000 \
+              -Dsonar.token=sqp_09eb5be2826964d040a9a688caee0522e5b96be3
             """
           }
           timeout(time: 1, unit: 'HOURS') {
@@ -100,12 +108,12 @@ pipeline {
     }
   post {
     success {
-      mail to: 'dragana.jenkins.2024@gmail.com',
+      mail to: 'diogomouralp1@gmail.com',
           subject: "Pipeline ${env.PROJECT_NAME} - Build # ${env.BUILD_NUMBER} - SUCCESS",
           body: "The pipeline was a SUCCESS. Check console output at ${env.BUILD_URL} to view the results."
     }
     failure {
-      mail to: 'dragana.jenkins.2024@gmail.com',
+      mail to: 'diogomouralp1@gmail.com',
           subject: "Pipeline ${env.PROJECT_NAME} - Build # ${env.BUILD_NUMBER} - FAILURE",
           body: "The pipeline was a FAILURE. Check console output at ${env.BUILD_URL} to view the results."
     }
