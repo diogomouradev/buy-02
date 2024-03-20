@@ -21,7 +21,7 @@ pipeline {
             script {
                 ansiblePlaybook(
                   colorized: true,
-                  credentialsId: 'deployment',
+                  credentialsId: 'deployssh',
                   disableHostKeyChecking: true,
                   installation: 'Ansible',
                   inventory: '/etc/ansible',
