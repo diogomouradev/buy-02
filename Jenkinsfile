@@ -40,7 +40,6 @@ pipeline {
       }
     }
     stage('Run Tests: User Service') {
-      agent { label 'master' }
       steps {
         dir('user-service') {
           sh 'mvn test'
@@ -48,7 +47,6 @@ pipeline {
       }
     }
     stage('Run Tests: Product Service') {
-      agent { label 'master' }
       steps {
         dir('product-service') {
           sh 'mvn test'
@@ -56,7 +54,6 @@ pipeline {
       }
     }
     stage('Run Tests: Media Service') {
-      agent { label 'master' }
       steps {
         dir('media-service') {
           sh 'mvn test'
@@ -64,7 +61,6 @@ pipeline {
       }
     }
     stage('Run Tests: Order Service') {
-      agent { label 'master' }
       steps {
         dir('order-service') {
           sh 'mvn test'
@@ -72,7 +68,6 @@ pipeline {
       }
     }
     stage('Run Tests: Angular') {
-      agent { label 'master' }
       steps {
         dir('angular') {
           sh 'export CHROME_BIN=/usr/bin/google-chrome'
