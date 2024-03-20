@@ -15,7 +15,8 @@ pipeline {
             checkout scm
          }
      }
-    stage('Deploy to Production') {
+    }
+        stage('Deploy to Production') {
             steps {
                 script {
                     ansiblePlaybook(
@@ -30,7 +31,6 @@ pipeline {
                 }
             }
         }
-    }
     stage('SonarQube Analysis') {
       steps {
           script{
@@ -96,7 +96,6 @@ pipeline {
         }
       }
     }
-    
     stage('Extract Version') {
       steps {
         script {
@@ -105,9 +104,6 @@ pipeline {
         }
       }
     }
-
-
-    
   post {
     success {
       mail to: 'diogomouralp1@gmail.com',
