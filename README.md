@@ -27,6 +27,8 @@ quality gate functionality and make sure that when we introduce new code into
 the code base that is not up to the quality gate requirements, it will trigger a
 failure in the pipeline, so it doesn't make it into production.
 
+gldrjngoidrthjhoi
+
 #### Prerequisites
 
 - Access to the [**SonarQube dashboard**](http://146.190.63.24/:9000)
