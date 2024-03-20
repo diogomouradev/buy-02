@@ -15,6 +15,22 @@ pipeline {
             checkout scm
          }
      }
+    stage('Deploy to Production') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                      colorized: true,
+                      credentialsId: 'deployment',
+                      disableHostKeyChecking: true,
+                      installation: 'Ansible',
+                      inventory: '/etc/ansible',
+                      playbook: './playbook.yml',
+                      vaultTmpPath: ''
+                  )
+                }
+            }
+        }
+    }
     stage('SonarQube Analysis') {
       steps {
           script{
@@ -89,22 +105,9 @@ pipeline {
         }
       }
     }
-     stage('Deploy to Production') {
-            steps {
-                script {
-                    ansiblePlaybook(
-                      colorized: true,
-                      credentialsId: 'deployment',
-                      disableHostKeyChecking: true,
-                      installation: 'Ansible',
-                      inventory: '/etc/ansible',
-                      playbook: './playbook.yml',
-                      vaultTmpPath: ''
-                  )
-                }
-            }
-        }
-    }
+
+
+    
   post {
     success {
       mail to: 'diogomouralp1@gmail.com',
