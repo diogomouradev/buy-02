@@ -1,7 +1,7 @@
 ---
 - name: Deploy to production
   gather_facts: false
-  hosts: deployservers
+  hosts: deployment
   become: true
   become_user: root
   tasks:
@@ -11,7 +11,7 @@
         mkdir -p buy-02
         cd buy-02
         if [ ! -d ".git" ]; then
-          git clone https://github.com/Draganchi/buy-02.git .
+          git clone https://github.com/diogomouradev/buy-02.git .
           git checkout main
         else
           git pull origin main
