@@ -8,29 +8,30 @@ pipeline {
     PROJECT_NAME = 'buy02'
     // PROJECT_VERSION will be dynamically set within a stage
   }
-  
   stages {
+
      stage("checkout"){
          steps{
             checkout scm
          }
      }
-    }
-        stage('Deploy to Production') {
-            steps {
-                script {
-                    ansiblePlaybook(
-                      colorized: true,
-                      credentialsId: 'deployment',
-                      disableHostKeyChecking: true,
-                      installation: 'Ansible',
-                      inventory: '/etc/ansible',
-                      playbook: './playbook.yml',
-                      vaultTmpPath: ''
-                  )
-                }
+  
+    stage('Deploy to Production') {
+        steps {
+            script {
+                ansiblePlaybook(
+                  colorized: true,
+                  credentialsId: 'deployment',
+                  disableHostKeyChecking: true,
+                  installation: 'Ansible',
+                  inventory: '/etc/ansible',
+                  playbook: './playbook.yml',
+                  vaultTmpPath: ''
+              )
             }
         }
+    }
+
     stage('SonarQube Analysis') {
       steps {
           script{
@@ -56,6 +57,7 @@ pipeline {
         }
       }
     }
+
     stage('Run Tests: User Service') {
       steps {
         dir('user-service') {
@@ -63,6 +65,7 @@ pipeline {
         }
       }
     }
+
     stage('Run Tests: Product Service') {
       steps {
         dir('product-service') {
@@ -70,6 +73,7 @@ pipeline {
         }
       }
     }
+
     stage('Run Tests: Media Service') {
       steps {
         dir('media-service') {
@@ -77,6 +81,7 @@ pipeline {
         }
       }
     }
+
     stage('Run Tests: Order Service') {
       steps {
         dir('order-service') {
@@ -84,6 +89,7 @@ pipeline {
         }
       }
     }
+
     stage('Run Tests: Angular') {
       steps {
         script {
@@ -96,6 +102,7 @@ pipeline {
         }
       }
     }
+
     stage('Extract Version') {
       steps {
         script {
@@ -104,6 +111,8 @@ pipeline {
         }
       }
     }
+  }
+
   post {
     success {
       mail to: 'diogomouralp1@gmail.com',
