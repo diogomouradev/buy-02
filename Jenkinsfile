@@ -70,6 +70,9 @@ pipeline {
     }
     stage('Run Tests: Angular') {
       steps {
+        script {
+                    env.CHROME_BIN = '/usr/bin/google-chrome'
+                }
         dir('angular') {
           sh 'export CHROME_BIN=/usr/bin/google-chrome'
           sh 'npm install'
