@@ -26,7 +26,8 @@ pipeline {
                   installation: 'Ansible',
                   inventory: '/etc/ansible',
                   playbook: './playbook.yml',
-                  vaultTmpPath: ''
+                  vaultTmpPath: '',
+                  user: 'root'
               )
             }
         }
