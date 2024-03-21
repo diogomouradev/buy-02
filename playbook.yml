@@ -3,7 +3,6 @@
   gather_facts: false
   hosts: deployservers
   become: true
-  become_user: root
   tasks:
 
     - name: Clone the repository
