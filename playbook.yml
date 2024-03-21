@@ -16,10 +16,10 @@
           git pull origin main
         fi
 
-    # - name: Run create.sh
-    #   command:
-    #     chdir: buy-02
-    #     cmd: sh ./create.sh
+    - name: Run create.sh
+      command:
+        chdir: buy-02
+        cmd: sh ./create.sh
 
     - name: Make it trusty
       command: 
