@@ -14,15 +14,15 @@ describe('SignupComponent', () => {
   const userServiceMock = {
     sendSignupRequest: () =>
       of({
-        name: 'dragana',
-        email: 'dragana@gmail.com',
+        name: 'diogo',
+        email: 'diogo@gmail.com',
         confirmPassword: 'test123',
         role: 'SELLER',
         id: '123123123',
       }),
     sendLoginRequest: () =>
       of({
-        name: 'dragana',
+        name: 'diogo',
         role: 'SELLER',
       }),
   };
@@ -51,8 +51,8 @@ describe('SignupComponent', () => {
           useValue: {
             getAuth: () => {
               of({
-                name: 'dragana',
-                email: 'dragana@dragana.com',
+                name: 'diogo',
+                email: 'diogo@diogo.com',
                 id: '123123123123123',
                 role: 'SELLER',
               });
@@ -76,7 +76,7 @@ describe('SignupComponent', () => {
 
   it('should validate correct form', () => {
     component.registerForm.setValue({
-      name: 'dragana',
+      name: 'diogo',
       email: 'email@gmail.com',
       password: 'test123',
       confirmPassword: 'test123',
@@ -92,7 +92,7 @@ describe('SignupComponent', () => {
     const router = TestBed.inject(Router);
 
     component.registerForm.setValue({
-      name: 'dragana',
+      name: 'diogo',
       email: 'email@gmail.com',
       password: 'test123',
       confirmPassword: 'test123',
@@ -101,7 +101,7 @@ describe('SignupComponent', () => {
 
     spyOn(userService, 'sendSignupRequest').and.returnValue(
       of({
-        name: 'dragana',
+        name: 'diogo',
         email: 'email@gmail.com',
         role: 'SELLER',
         jwtToken: '123123123',
@@ -110,8 +110,8 @@ describe('SignupComponent', () => {
     );
 
     component.registerForm.setValue({
-      name: 'dragana',
-      email: 'dragana@gmail.com',
+      name: 'diogo',
+      email: 'diogo@gmail.com',
       password: 'test123',
       confirmPassword: 'test123',
       role: true,
@@ -120,16 +120,16 @@ describe('SignupComponent', () => {
     component.onSubmit();
 
     expect(userService.sendSignupRequest).toHaveBeenCalledWith({
-      name: 'dragana',
-      email: 'dragana@gmail.com',
+      name: 'diogo',
+      email: 'diogo@gmail.com',
       password: 'test123',
       confirmPassword: 'test123',
       role: 'SELLER',
     });
 
     component.autoLogin({
-      name: 'dragana',
-      email: 'dragana@gmail.com',
+      name: 'diogo',
+      email: 'diogo@gmail.com',
       password: 'test123',
       role: 'SELLER',
     });
@@ -137,7 +137,7 @@ describe('SignupComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['home'], {
       state: {
         data: {
-          name: 'dragana',
+          name: 'diogo',
           role: 'SELLER',
         },
       },
@@ -146,7 +146,7 @@ describe('SignupComponent', () => {
 
   it('should not validate: passwords don\'t match', () => {
     component.registerForm.setValue({
-      name: 'dragana',
+      name: 'diogo',
       email: 'email@gmail.com',
       password: 'test12',
       confirmPassword: 'test123',
@@ -159,7 +159,7 @@ describe('SignupComponent', () => {
 
   it('should not validate: invalid email', () => {
     component.registerForm.setValue({
-      name: 'dragana',
+      name: 'diogo',
       email: 'email',
       password: 'test123',
       confirmPassword: 'test123',
