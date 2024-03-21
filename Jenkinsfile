@@ -95,9 +95,8 @@ pipeline {
         }
       }
     }
-  }
 
-  stage('Deploy to Production') {
+    stage('Deploy to Production') {
         steps {
             script {
                 ansiblePlaybook(
@@ -113,6 +112,9 @@ pipeline {
             }
         }
     }
+  }
+
+  
 
   post {
     success {
