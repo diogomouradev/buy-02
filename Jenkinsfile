@@ -27,7 +27,6 @@ pipeline {
                   inventory: '/etc/ansible',
                   playbook: './playbook.yml',
                   vaultTmpPath: ''
-                  extras: "-u root"
               )
             }
         }
