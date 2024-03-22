@@ -53,3 +53,4 @@
       # environment:
       #   mongodbusername: Gritlab
       #   mongodbpass: Gritlab
+      #   MONGO_DB_URI: mongodb+srv://62oz:T34mP4ssw0rd@buy-01.zehvood.mongodb.net/db-user
