@@ -16,6 +16,23 @@ pipeline {
          }
      }
 
+     stage('Deploy to Production') {
+        steps {
+            script {
+                ansiblePlaybook(
+                  colorized: true,
+                  credentialsId: 'ssh-key',
+                  disableHostKeyChecking: true,
+                  installation: 'Ansible',
+                  inventory: '/etc/ansible',
+                  playbook: './playbook.yml',
+                  vaultTmpPath: '',
+                  extraVars: [ansible_ssh_user: 'root']
+              )
+            }
+        }
+    }
+
     stage('SonarQube Analysis') {
       steps {
           script{
@@ -96,22 +113,7 @@ pipeline {
       }
     }
 
-    stage('Deploy to Production') {
-        steps {
-            script {
-                ansiblePlaybook(
-                  colorized: true,
-                  credentialsId: 'ssh-key',
-                  disableHostKeyChecking: true,
-                  installation: 'Ansible',
-                  inventory: '/etc/ansible',
-                  playbook: './playbook.yml',
-                  vaultTmpPath: '',
-                  extraVars: [ansible_ssh_user: 'root']
-              )
-            }
-        }
-    }
+    
   }
 
   
