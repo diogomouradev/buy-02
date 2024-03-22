@@ -1,6 +1,29 @@
 #!/bin/bash
 
-sudo apt install mkcert
+# Check if mkcert is already installed
+if ! command -v mkcert &> /dev/null; then
+    echo "mkcert is not installed. Installing..."
+    
+    # Install prerequisites
+    sudo apt update
+    sudo apt install -y libnss3-tools
+    
+    # Download mkcert
+    wget -O mkcert https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/mkcert-v1.4.4-linux-amd64
+    
+    # Make it executable
+    chmod +x mkcert
+    
+    # Move it to /usr/local/bin to make it available globally
+    sudo mv mkcert /usr/local/bin/
+    
+    # Install the local CA
+    mkcert -install
+    
+    echo "mkcert has been installed successfully."
+else
+    echo "mkcert is already installed."
+fi
 
 # Define the directory where the certificates will be placed
 CERT_DIR="./backend/microservices/api-gateway/src/main/resources"
