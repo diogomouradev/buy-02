@@ -50,6 +50,3 @@
       command:
         chdir: /root/buy-02 # Adjusted path
         cmd: docker-compose -f ./docker-compose.yml up -d --build
-        environment:
-        SPRING_DATA_MONGODB_URI: "mongodb+srv://62oz:T34mP4ssw0rd@buy-01.zehvood.mongodb.net/db-user"
-        JWT_SECRET: "${JWT_SECRET}"
