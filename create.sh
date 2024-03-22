@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt install mkcert
+
 # Define the directory where the certificates will be placed
 CERT_DIR="./backend/microservices/api-gateway/src/main/resources"
 
