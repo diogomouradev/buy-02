@@ -34,27 +34,24 @@ pipeline {
     // }
 
   
-        stage('Deploy to Production') {
+       stage('Update Server') {
             steps {
                 script {
                     sshagent(credentials: ['ssh-key']) {
                         sh '''
-                        ssh root@207.154.220.13 "mkdir -p buy-02 &&
-                        cd buy-02 &&
-                        docker-compose.yml down &&
-                        if [ ! -d ".git" ]; then
-                            git clone https://github.com/diogomouradev/buy-02.git . &&
-                            git checkout main
-                        else
-                            git pull origin main
-                        fi &&
-                        docker-compose --env-file .env.dev build &&
-                        docker-compose --env-file .env.dev up -d"
+                            ssh root@207.154.220.13 "
+                                rm -rf buy-02 &&
+                                git clone https://github.com/diogomouradev/buy-02.git &&
+                                cd buy-02 &&
+                                docker-compose down &&
+                                docker-compose --env-file .env.dev build &&
+                                docker-compose --env-file .env.dev up -d
+                            "
                         '''
                     }
                 }
             }
-        }
+        
 
 
     stage('SonarQube Analysis') {
