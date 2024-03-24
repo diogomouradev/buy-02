@@ -16,22 +16,50 @@ pipeline {
          }
      }
 
-     stage('Deploy to Production') {
-        steps {
-            script {
-                ansiblePlaybook(
-                  colorized: true,
-                  credentialsId: 'ssh-key',
-                  disableHostKeyChecking: true,
-                  installation: 'Ansible',
-                  inventory: '/etc/ansible',
-                  playbook: './playbook.yml',
-                  vaultTmpPath: '',
-                  extraVars: [ansible_ssh_user: 'root']
-              )
+    //  stage('Deploy to Production') {
+    //     steps {
+    //         script {
+    //             ansiblePlaybook(
+    //               colorized: true,
+    //               credentialsId: 'ssh-key',
+    //               disableHostKeyChecking: true,
+    //               installation: 'Ansible',
+    //               inventory: '/etc/ansible',
+    //               playbook: './playbook.yml',
+    //               vaultTmpPath: '',
+    //               extraVars: [ansible_ssh_user: 'root']
+    //           )
+    //         }
+    //     }
+    // }
+
+    stage('Deploy to Production') {
+    steps {
+        script {
+            sshagent(credentials: ['ssh-key']) {
+                sh '''
+                ssh root@207.154.220.13 "mkdir -p buy-02 &&
+                cd buy-02 &&
+                if [ ! -d ".git" ]; then
+                    git clone https://github.com/diogomouradev/buy-02.git . &&
+                    git checkout main
+                else
+                    git pull origin main
+                fi &&
+                sh ./create.sh &&
+                mkcert -install &&
+                apt update &&
+                apt install -y python3-pip &&
+                apt install -y python3-docker &&
+                curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose &&
+                chmod +x /usr/local/bin/docker-compose &&
+                docker-compose -f ./docker-compose.yml up -d --build"
+                '''
             }
         }
     }
+}
+
 
     stage('SonarQube Analysis') {
       steps {
