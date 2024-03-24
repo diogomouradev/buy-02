@@ -1,3 +1,5 @@
+version: '3.7'
+
 services:
   user-service:
     build:
@@ -13,7 +15,6 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      # - mongodb
       - zookeeper
       - kafka
 
@@ -28,7 +29,6 @@ services:
     ports:
       - "8081:8080"
     depends_on:
-      # - mongodb
       - zookeeper
       - kafka
 
@@ -43,7 +43,6 @@ services:
     ports:
       - "8082:8080"
     depends_on:
-      # - mongodb
       - zookeeper
       - kafka
 
@@ -58,7 +57,6 @@ services:
     ports:
       - "8083:8080"
     depends_on:
-      # - mongodb
       - zookeeper
       - kafka
 
@@ -87,11 +85,8 @@ services:
     ports:
       - "2181:2181"
     volumes:
-      - "./zookeeper-data:/data"
-      - "./wait-for-it.sh:/wait-for-it.sh"
-    # depends_on:
-    #   - mongodb
-    # command: ["/bin/sh", "-c", "/wait-for-it.sh mongodb:27017 -- /usr/sbin/sshd && bash /usr/bin/start-zk.sh"]
+      - ./zookeeper-data:/data
+      - ./wait-for-it.sh:/wait-for-it.sh
 
   kafka:
     image: wurstmeister/kafka:latest
@@ -112,9 +107,6 @@ services:
     depends_on:
       - zookeeper
     volumes:
-      - "./wait-for-it.sh:/wait-for-it.sh"
-      - "./kafka-entrypoint.sh:/kafka-entrypoint.sh"
+      - ./wait-for-it.sh:/wait-for-it.sh
+      - ./kafka-entrypoint.sh:/kafka-entrypoint.sh
     entrypoint: ["/bin/bash", "/kafka-entrypoint.sh"]
-    # command: ["/wait-for-it.sh", "zookeeper:2181", "--", "/start-kafka.sh"]
-# volumes:
-#   mongodb_data:
