@@ -16,41 +16,41 @@ pipeline {
          }
      }
 
-     stage('Deploy to Production') {
-        steps {
-            script {
-                ansiblePlaybook(
-                  colorized: true,
-                  credentialsId: 'ssh-key',
-                  disableHostKeyChecking: true,
-                  installation: 'Ansible',
-                  inventory: '/etc/ansible',
-                  playbook: './playbook.yml',
-                  vaultTmpPath: '',
-                  extraVars: [ansible_ssh_user: 'root']
-              )
-            }
-        }
-    }
+    //  stage('Deploy to Production') {
+    //     steps {
+    //         script {
+    //             ansiblePlaybook(
+    //               colorized: true,
+    //               credentialsId: 'ssh-key',
+    //               disableHostKeyChecking: true,
+    //               installation: 'Ansible',
+    //               inventory: '/etc/ansible',
+    //               playbook: './playbook.yml',
+    //               vaultTmpPath: '',
+    //               extraVars: [ansible_ssh_user: 'root']
+    //           )
+    //         }
+    //     }
+    // }
 
   
-      //  stage('Update Server') {
-      //       steps {
-      //           script {
-      //               sshagent(credentials: ['ssh-key']) {
-      //                   sh '''
-      //                       ssh root@207.154.220.13 "
-      //                           rm -rf buy-02 &&
-      //                           git clone https://github.com/diogomouradev/buy-02.git &&
-      //                           cd buy-02 &&
-      //                           docker-compose --env-file .env.dev build &&
-      //                           docker-compose --env-file .env.dev up -d
-      //                       "
-      //                   '''
-      //               }
-      //           }
-      //       }
-      //   }
+       stage('Update Server') {
+            steps {
+                script {
+                    sshagent(credentials: ['ssh-key']) {
+                        sh '''
+                            ssh root@207.154.220.13 "
+                                rm -rf buy-02 &&
+                                git clone https://github.com/diogomouradev/buy-02.git &&
+                                cd buy-02 &&
+                                docker-compose --env-file .env.dev build &&
+                                docker-compose --env-file .env.dev up -d
+                            "
+                        '''
+                    }
+                }
+            }
+        }
 
 
     stage('SonarQube Analysis') {
