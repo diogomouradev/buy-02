@@ -41,7 +41,7 @@ pipeline {
                         sh '''
                         ssh root@207.154.220.13 "mkdir -p buy-02 &&
                         cd buy-02 &&
-                        docker-compose down &&
+                        docker-compose.yml down &&
                         if [ ! -d ".git" ]; then
                             git clone https://github.com/diogomouradev/buy-02.git . &&
                             git checkout main
