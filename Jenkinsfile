@@ -33,7 +33,7 @@ pipeline {
     //     }
     // }
 
-stages {
+  
         stage('Deploy to Production') {
             steps {
                 script {
@@ -55,7 +55,6 @@ stages {
                 }
             }
         }
-    }
 
 
     stage('SonarQube Analysis') {
