@@ -43,7 +43,6 @@ pipeline {
                                 rm -rf buy-02 &&
                                 git clone https://github.com/diogomouradev/buy-02.git &&
                                 cd buy-02 &&
-                                docker-compose down &&
                                 docker-compose --env-file .env.dev build &&
                                 docker-compose --env-file .env.dev up -d
                             "
