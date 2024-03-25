@@ -49,10 +49,10 @@
 
     - name: Build Docker Compose services
       command:
-        chdir: ./root/buy-02
+        chdir: /root/buy-02
         cmd: docker-compose --env-file .env.dev build
 
     - name: Start Docker Compose services
       command:
-        chdir: ./root/buy-02
+        chdir: /root/buy-02
         cmd: docker-compose --env-file .env.dev up -d
