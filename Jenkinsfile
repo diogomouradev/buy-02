@@ -34,19 +34,35 @@ pipeline {
     // }
 
   
-       stage('Update Server') {
+      //  stage('Update Server') {
+      //       steps {
+      //           script {
+      //               sshagent(credentials: ['ssh-key']) {
+      //                   sh '''
+      //                       ssh root@207.154.220.13 "
+      //                           rm -rf buy-02 &&
+      //                           git clone https://github.com/diogomouradev/buy-02.git &&
+      //                           cd buy-02 &&
+      //                           docker-compose --env-file .env.dev build &&
+      //                           docker-compose --env-file .env.dev up -d
+      //                       "
+      //                   '''
+      //               }
+      //           }
+      //       }
+      //   }
+
+      stage('Update Server') {
             steps {
                 script {
-                    sshagent(credentials: ['ssh-key']) {
-                        sh '''
-                            ssh root@207.154.220.13 "
-                                rm -rf buy-02 &&
-                                git clone https://github.com/diogomouradev/buy-02.git &&
-                                cd buy-02 &&
-                                docker-compose --env-file .env.dev build &&
-                                docker-compose --env-file .env.dev up -d
-                            "
-                        '''
+                    // Change directory to your project directory
+                    dir('buy-02') {
+                        // Pull latest changes from the Git repository
+                        sh 'git pull origin master'
+                        
+                        // Build and start containers using docker-compose
+                        sh 'docker-compose --env-file .env.dev build'
+                        sh 'docker-compose --env-file .env.dev up -d'
                     }
                 }
             }
