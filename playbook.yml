@@ -50,7 +50,7 @@
     - name: Run the Docker Compose command
       command:
         chdir: /root/buy-02 # Adjusted path
-        cmd: docker-compose -f ./docker-compose-prod.yml up -d --build
+        cmd: docker-compose -f ./docker-compose.yml up -d --build
       environment:
         mongodbusername: Gritlab
         mongodbpass: Gritlab
