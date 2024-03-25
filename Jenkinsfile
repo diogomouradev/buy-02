@@ -8,42 +8,10 @@ pipeline {
     PROJECT_NAME = 'buy02'
     // PROJECT_VERSION will be dynamically set within a stage
   }
-  stages {
-
-     stage("checkout"){
-         steps{
-            checkout scm
-         }
-     }
-
-     stage('Deploy to Production') {
-        steps {
-            script {
-                ansiblePlaybook(
-                  colorized: true,
-                  credentialsId: 'ssh-key',
-                  disableHostKeyChecking: true,
-                  installation: 'Ansible',
-                  inventory: '/etc/ansible',
-                  playbook: './playbook.yml',
-                  vaultTmpPath: '',
-                  extraVars: [ansible_ssh_user: 'root']
-              )
-            }
-        }
-    }
-
   
-   
-
-    
-
-
+  stages {
     stage('SonarQube Analysis') {
       steps {
-          script{
-              sh "ls -la"
-          }
         script {
           withSonarQubeEnv('buy-02') {
             sh """
@@ -55,7 +23,6 @@ pipeline {
             """
           }
           timeout(time: 1, unit: 'HOURS') {
-            
               def qg = waitForQualityGate()
               if (qg.status != 'OK') {
                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
@@ -64,44 +31,41 @@ pipeline {
         }
       }
     }
-
     stage('Run Tests: User Service') {
+      agent { label 'master' }
       steps {
         dir('user-service') {
           sh 'mvn test'
         }
       }
     }
-
     stage('Run Tests: Product Service') {
+      agent { label 'master' }
       steps {
         dir('product-service') {
           sh 'mvn test'
         }
       }
     }
-
     stage('Run Tests: Media Service') {
+      agent { label 'master' }
       steps {
         dir('media-service') {
           sh 'mvn test'
         }
       }
     }
-
     stage('Run Tests: Order Service') {
+      agent { label 'master' }
       steps {
         dir('order-service') {
           sh 'mvn test'
         }
       }
     }
-
     stage('Run Tests: Angular') {
+      agent { label 'master' }
       steps {
-        script {
-                    env.CHROME_BIN = '/usr/bin/google-chrome'
-                }
         dir('angular') {
           sh 'export CHROME_BIN=/usr/bin/google-chrome'
           sh 'npm install'
@@ -109,7 +73,7 @@ pipeline {
         }
       }
     }
-
+    
     stage('Extract Version') {
       steps {
         script {
@@ -118,12 +82,22 @@ pipeline {
         }
       }
     }
-
-    
-  }
-
-  
-
+     stage('Deploy to Production') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                      colorized: true,
+                      credentialsId: 'deployssh',
+                      disableHostKeyChecking: true,
+                      installation: 'Ansible',
+                      inventory: '/etc/ansible',
+                      playbook: './playbook.yml',
+                      vaultTmpPath: ''
+                  )
+                }
+            }
+        }
+    }
   post {
     success {
       mail to: 'diogomouralp1@gmail.com',
@@ -137,5 +111,3 @@ pipeline {
     }
   }
 }
-
-
