@@ -93,6 +93,7 @@ pipeline {
                       inventory: '/etc/ansible',
                       playbook: './playbook.yml',
                       vaultTmpPath: ''
+                      extraVars: [ansible_ssh_user: 'root']
                   )
                 }
             }
