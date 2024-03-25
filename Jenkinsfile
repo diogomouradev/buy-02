@@ -58,7 +58,7 @@ pipeline {
                     // Change directory to your project directory
                     dir('buy-02') {
                         // Pull latest changes from the Git repository
-                        sh 'git pull origin master'
+                        sh 'git pull origin main'
                         
                         // Build and start containers using docker-compose
                         sh 'docker-compose --env-file .env.dev build'
