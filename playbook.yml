@@ -47,10 +47,12 @@
         path: /usr/local/bin/docker-compose
         mode: "u+x,g+x"
 
-    - name: Run the Docker Compose command
+    - name: Build Docker Compose services
       command:
-        chdir: /root/buy-02 # Adjusted path
-        cmd: docker-compose -f ./docker-compose.yml up -d --build
-      environment:
-        mongodbusername: Gritlab
-        mongodbpass: Gritlab
+        chdir: ./root/buy-02
+        cmd: docker-compose --env-file .env.dev build
+
+    - name: Start Docker Compose services
+      command:
+        chdir: ./root/buy-02
+        cmd: docker-compose --env-file .env.dev up -d
