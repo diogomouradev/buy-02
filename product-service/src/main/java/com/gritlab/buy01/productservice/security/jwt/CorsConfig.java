@@ -16,7 +16,7 @@ public class CorsConfig implements WebMvcConfigurer {
             "https://localhost:4200/",
             "https://localhost:443/",
             "https://localhost",
-            "https://houseof.products")
+            "https://thewarehouse.rocks")
         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
         .allowedHeaders("*")
         .allowCredentials(true)

@@ -58,7 +58,7 @@ export class UserService {
       '',
       expirationDate,
       '/',
-      'houseof.products',
+      'thewarehouse.rocks',
       true,
       'Lax',
     );

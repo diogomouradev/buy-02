@@ -110,7 +110,7 @@
     <profile>
       <id>prod</id>
       <properties>
-        <app.cookie.domain>houseof.products</app.cookie.domain>
+        <app.cookie.domain>thewarehouse.rocks</app.cookie.domain>
       </properties>
       <build>
         <finalName>user-service-prod</finalName>
