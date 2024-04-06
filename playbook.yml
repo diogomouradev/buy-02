@@ -48,9 +48,8 @@
         path: /usr/local/bin/docker-compose
         mode: "u+x,g+x"
 
-    - name: Delete Docker image
-      command:
-        cmd: docker rm -f $(docker ps -aq)
+    - name: Delete Docker container
+      command: docker rm -f $(docker ps -aq)
         
     - name: Build Docker Compose services
       command:
