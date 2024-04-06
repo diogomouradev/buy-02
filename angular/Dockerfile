@@ -8,7 +8,7 @@ RUN npm run build
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf.template
 COPY --from=build /app/dist/buy-01 /usr/share/nginx/html
-EXPOSE 80 443
+EXPOSE 80 445
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

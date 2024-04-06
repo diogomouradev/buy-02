@@ -179,13 +179,13 @@ describe('UserService', () => {
 
   it('signup url should be environment.signupURL', () => {
     expect(environment.signupURL).toEqual(
-      'https://localhost:443/api/auth/signup',
+      'https://localhost:445/api/auth/signup',
     );
   });
 
   it('signup url should be environment.loginURL', () => {
     expect(environment.loginURL).toEqual(
-      'https://localhost:443/api/auth/signin',
+      'https://localhost:445/api/auth/signin',
     );
   });
 });

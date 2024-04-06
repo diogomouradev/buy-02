@@ -169,7 +169,7 @@ Some other actions also depend on Kafka:
 
 ## API Access
 
-The angular frontend runs on port _443_ using HTTPS. From localhost the API
+The angular frontend runs on port _445_ using HTTPS. From localhost the API
 endpoints are also accessible using an API tool like Postman. An nginx reverse
 proxy handles the routing of the request towards the proper microservices.
 
