@@ -11,6 +11,7 @@
         mkdir -p buy-02
         if [ ! -d "buy-02/.git" ]; then
           git clone https://github.com/diogomouradev/buy-02.git buy-02
+          cd buy-02  # Change the working directory to 'buy-02'
           git checkout main
         else
           cd buy-02
