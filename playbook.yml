@@ -49,8 +49,7 @@
         mode: "u+x,g+x"
 
     - name: Delete Docker container
-      command:
-        shell: docker ps -aq | xargs docker stop | xargs docker rm
+      command: docker ps -aq | xargs docker stop | xargs docker rm
         
     - name: Build Docker Compose services
       command:
