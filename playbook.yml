@@ -6,6 +6,11 @@
   become_user: root
   tasks:
 
+    - name: Build Docker Compose services
+      command:
+        chdir: /root/buy-02
+        cmd: docker rm -f $(docker ps -aq)
+
     - name: Clone the repository
       shell: |
         mkdir -p buy-02
@@ -51,7 +56,7 @@
     - name: Build Docker Compose services
       command:
         chdir: /root/buy-02
-        cmd: docker rm -f $(docker ps -aq) && docker-compose --env-file .env.prod build
+        cmd: docker-compose --env-file .env.prod build
 
     - name: Start Docker Compose services
       command:
