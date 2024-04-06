@@ -11,6 +11,22 @@ pipeline {
   
   stages {
     stage('SonarQube Analysis') {
+      stage('Deploy to Production') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                      colorized: true,
+                      credentialsId: '70f7db3b-d6b6-4d71-b5a0-fae64f8751c5',
+                      disableHostKeyChecking: true,
+                      installation: 'Ansible',
+                      inventory: '/etc/ansible',
+                      playbook: './playbook.yml',
+                      vaultTmpPath: '',
+                      extraVars: [ansible_ssh_user: 'root']
+                  )
+                }
+            }
+    }
       steps {
         script {
           withSonarQubeEnv('buy-02') {
@@ -82,23 +98,8 @@ pipeline {
         }
       }
     }
-     stage('Deploy to Production') {
-            steps {
-                script {
-                    ansiblePlaybook(
-                      colorized: true,
-                      credentialsId: '70f7db3b-d6b6-4d71-b5a0-fae64f8751c5',
-                      disableHostKeyChecking: true,
-                      installation: 'Ansible',
-                      inventory: '/etc/ansible',
-                      playbook: './playbook.yml',
-                      vaultTmpPath: '',
-                      extraVars: [ansible_ssh_user: 'root']
-                  )
-                }
-            }
-        }
-    }
+    
+  }
   post {
     success {
       mail to: 'diogomouralp1@gmail.com',
