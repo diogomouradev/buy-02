@@ -48,8 +48,17 @@
         path: /usr/local/bin/docker-compose
         mode: "u+x,g+x"
 
-    - name: Delete Docker container
-      command: docker rm -f $(docker ps -aq)
+    - name: Stop all Docker containers
+      docker_container:
+        name: "{{ item }}"
+        state: stopped
+      loop: "{{ query('docker_container_info', all=True) }}"
+
+    - name: Remove all Docker containers
+      docker_container:
+        name: "{{ item }}"
+        state: absent
+      loop: "{{ query('docker_container_info', all=True) }}"
         
     - name: Build Docker Compose services
       command:
