@@ -10,8 +10,7 @@ pipeline {
   }
   
   stages {
-    stage('SonarQube Analysis') {
-      stage('Deploy to Production') {
+    stage('Deploy to Production') {
             steps {
                 script {
                     ansiblePlaybook(
@@ -27,6 +26,7 @@ pipeline {
                 }
             }
     }
+    stage('SonarQube Analysis') {
       steps {
         script {
           withSonarQubeEnv('buy-02') {
