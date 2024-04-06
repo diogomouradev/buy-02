@@ -50,7 +50,7 @@
 
     - name: Delete Docker container
       command:
-        cmd: docker ps -aq | xargs docker stop | xargs docker rm
+        shell: docker ps -aq | xargs docker stop | xargs docker rm
         
     - name: Build Docker Compose services
       command:
