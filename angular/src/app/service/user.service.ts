@@ -58,7 +58,7 @@ export class UserService {
       '',
       expirationDate,
       '/',
-      'thewarehouse.rocks',
+      '142.93.96.100',
       true,
       'Lax',
     );
