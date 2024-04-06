@@ -6,16 +6,6 @@
   become_user: root
   tasks:
 
-    - name: Stop all Docker containers
-      command:
-        cmd: docker ps -aq
-      register: docker_containers
-
-    - name: Remove all Docker containers
-      command:
-        cmd: docker rm -f {{ item }}
-      loop: "{{ docker_containers.stdout_lines }}"
-
     - name: Clone the repository
       shell: |
         mkdir -p buy-02
@@ -53,6 +43,16 @@
         dest: /usr/local/bin/docker-compose
         mode: "u+x,g+x"
 
+    - name: Stop all Docker containers
+      command:
+        cmd: docker ps -aq
+      register: docker_containers
+
+    - name: Remove all Docker containers
+      command:
+        cmd: docker rm -f {{ item }}
+      loop: "{{ docker_containers.stdout_lines }}"
+          
     - name: Make Docker Compose executable
       file:
         path: /usr/local/bin/docker-compose
