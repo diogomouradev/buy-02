@@ -48,13 +48,17 @@
         path: /usr/local/bin/docker-compose
         mode: "u+x,g+x"
 
+    - name: Delete Docker image
+      command:
+        cmd: docker rm -f $(docker ps -aq)
+        
     - name: Build Docker Compose services
       command:
         chdir: /root/buy-02
         cmd: docker rm -f $(docker ps -aq)
-        cmd: docker-compose --env-file .env.dev build
+        cmd: docker-compose --env-file .env.prod build
 
     - name: Start Docker Compose services
       command:
         chdir: /root/buy-02
-        cmd: docker-compose --env-file .env.dev up -d
+        cmd: docker-compose --env-file .env.prod up -d
