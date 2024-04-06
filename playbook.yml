@@ -8,7 +8,7 @@
 
     - name: Clone the repository
       shell: |
-        # mkdir -p buy-02
+       
         cd buy-02
         if [ ! -d ".git" ]; then
           git clone https://github.com/diogomouradev/buy-02.git
