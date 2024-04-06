@@ -48,22 +48,13 @@
         path: /usr/local/bin/docker-compose
         mode: "u+x,g+x"
 
-    - name: Stop all Docker containers
-      docker_container:
-        name: "{{ item }}"
-        state: stopped
-      loop: "{{ query('docker_container_info', all=True) }}"
-
-    - name: Remove all Docker containers
-      docker_container:
-        name: "{{ item }}"
-        state: absent
-      loop: "{{ query('docker_container_info', all=True) }}"
+    - name: Delete Docker container
+      command:
+        cmd: docker rm -f $(docker ps -aq)
         
     - name: Build Docker Compose services
       command:
         chdir: /root/buy-02
-        cmd: docker rm -f $(docker ps -aq)
         cmd: docker-compose --env-file .env.prod build
 
     - name: Start Docker Compose services
