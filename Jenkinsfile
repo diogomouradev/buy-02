@@ -8,7 +8,9 @@ pipeline {
     PROJECT_NAME = 'buy02'
     // PROJECT_VERSION will be dynamically set within a stage
   }
-  stage('Deploy to Production') {
+  
+  stages {
+    stage('Deploy to Production') {
       steps {
         script {
           ansiblePlaybook(
@@ -24,7 +26,6 @@ pipeline {
         }
       }
     }
-  stages {
     stage('SonarQube Analysis') {
       steps {
         script {
