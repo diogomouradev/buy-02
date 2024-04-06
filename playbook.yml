@@ -8,7 +8,6 @@
 
     - name: Build Docker Compose services
       command:
-        chdir: /root/buy-02
         cmd: docker rm -f $(docker ps -aq)
 
     - name: Clone the repository
