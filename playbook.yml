@@ -47,13 +47,11 @@
       file:
         path: /usr/local/bin/docker-compose
         mode: "u+x,g+x"
-
-    - name: Delete Docker container
-      command: docker ps -aq | xargs docker stop | xargs docker rm
-        
+       
     - name: Build Docker Compose services
       command:
         chdir: /root/buy-02
+        cmd: docker ps -aq | xargs docker stop | xargs docker rm
         cmd: docker-compose --env-file .env.prod build
 
     - name: Start Docker Compose services
