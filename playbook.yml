@@ -6,9 +6,15 @@
   become_user: root
   tasks:
 
-    - name: Build Docker Compose services
+    - name: Stop all Docker containers
       command:
-        cmd: docker rm -f $(docker ps -aq)
+        cmd: docker ps -aq
+      register: docker_containers
+
+    - name: Remove all Docker containers
+      command:
+        cmd: docker rm -f {{ item }}
+      loop: "{{ docker_containers.stdout_lines }}"
 
     - name: Clone the repository
       shell: |
