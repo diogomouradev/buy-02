@@ -51,9 +51,7 @@
     - name: Build Docker Compose services
       command:
         chdir: /root/buy-02
-        cmd: |
-        docker rm -f $(docker ps -aq)
-        docker-compose --env-file .env.prod build
+        cmd: docker-compose --env-file .env.prod build
 
     - name: Start Docker Compose services
       command:
